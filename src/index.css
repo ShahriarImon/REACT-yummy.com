@@ -21,8 +21,10 @@ code {
   /* cursor: pointer; */
 }
 
-/* .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 1rem;
-} */
+.grid {
+  border: none;
+  padding: 2rem 4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transform: translateX(-100%);
+}
