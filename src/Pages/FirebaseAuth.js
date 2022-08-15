@@ -71,7 +71,9 @@ const FirebaseAuth = () => {
       isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
     }
     if (event.target.name === "name") {
-      isFieldValid = /^[a-zA-Z\-]+$/.test(event.target.value);
+      if (event.target.value) {
+        isFieldValid = true;
+      }
     }
 
     if (isFieldValid) {
@@ -88,7 +90,7 @@ const FirebaseAuth = () => {
     }
   };
   const handleSubmit = (e) => {
-    if (button === "signup" && user.email && user.password) {
+    if (button === "signup" && user.email && user.name && user.password) {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, user.email, user.password)
         .then((userCredential) => {
@@ -193,10 +195,7 @@ const FirebaseAuth = () => {
           </div>
           <div className="inputContainer" style={inputContainer}>
             {user.fieldErrorAlert === "name" && (
-              <small style={{ color: "#CB0101" }}>
-                {" "}
-                *Username must be One word
-              </small>
+              <small style={{ color: "#CB0101" }}> *Enter Your Name</small>
             )}
             {button === "signup" && (
               <FormInput
