@@ -13,7 +13,7 @@ const Popular = () => {
       setPopular(JSON.parse(check));
     } else {
       fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=a316987482ba439c9d645dd2fd388d59&number=9`
+        `https://api.spoonacular.com/recipes/random?apiKey=62760f30a3e14f458ce929a5caed60f0&number=9`
       )
         .then((res) => res.json())
         .then((data) => {

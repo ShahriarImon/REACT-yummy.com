@@ -8,7 +8,7 @@ const Recipe = () => {
   const [activeTab, setActiveTab] = useState("Instructions");
   useEffect(() => {
     fetch(
-      `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=a316987482ba439c9d645dd2fd388d59`
+      `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=62760f30a3e14f458ce929a5caed60f0`
     )
       .then((res) => res.json())
       .then((data) => setRecipe(data));
@@ -39,8 +39,8 @@ const Recipe = () => {
         </Button>
         {activeTab === "Instructions" && (
           <div>
-            <h3 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h3>
-            <h3 dangerouslySetInnerHTML={{ __html: recipe.instructions }}></h3>
+            <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>
+            <h4 dangerouslySetInnerHTML={{ __html: recipe.instructions }}></h4>
           </div>
         )}
         {activeTab === "Ingredients" && (
@@ -80,17 +80,17 @@ const DetailWrapper = styled.div`
   }
 `;
 const Button = styled.button`
-
-  padding: 1rem 2rem;
+  padding: 2% 6%;
   color: #313131;
   background: white;
   border: 2px solid black;
-  margin-right: 2rem;
-  font weight: 600;
+  margin-right: 1%;
+  font-weight: 500;
 `;
 const Info = styled.div`
   margin-left: 10rem;
-  h3 {
+  h4 {
+    font-size: 1.2rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
   }

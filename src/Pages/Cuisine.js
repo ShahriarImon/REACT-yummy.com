@@ -21,7 +21,7 @@ const Cuisine = () => {
       setCuisine(JSON.parse(check));
     } else {
       fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a316987482ba439c9d645dd2fd388d59&cuisine=${params.type}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=62760f30a3e14f458ce929a5caed60f0&cuisine=${params.type}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -58,7 +58,10 @@ const Cuisine = () => {
         {cuisine.map((element) => {
           return (
             <Card key={element.id}>
-              <Link to={"/recipe/" + element.id}>
+              <Link
+                to={"/recipe/" + element.id}
+                style={{ textDecoration: "none" }}
+              >
                 <img src={element.image} alt="" />
                 <h4>{element.title}</h4>
               </Link>
@@ -88,5 +91,7 @@ export const Card = styled.div`
   h4 {
     text-align: center;
     padding: 1rem;
+    color: black;
+    font-size: 15pt;
   }
 `;

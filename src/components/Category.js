@@ -27,14 +27,14 @@ const Category = () => {
 export default Category;
 
 const List = styled.div`
-  margin: 2rem 0rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const ListItem = styled(NavLink)`
   background: rgba(0, 0, 0, 1);
-  color: white;
+  color: white !important;
   width: 4rem;
   height: 4rem;
   margin: 0rem 1rem;
@@ -43,11 +43,12 @@ const ListItem = styled(NavLink)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
   .icon {
     font-size: 15pt;
   }
   h4 {
-    font-size: 8pt;
+    font-size: 9pt;
   }
   &.active {
     background: linear-gradient(to right, green, red);

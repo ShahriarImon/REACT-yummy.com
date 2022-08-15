@@ -7,7 +7,7 @@ const SearchedItems = () => {
   const [searchedItems, setSearchedItems] = useState([]);
   useEffect(() => {
     fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=a316987482ba439c9d645dd2fd388d59&query=${params.search}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=62760f30a3e14f458ce929a5caed60f0&query=${params.search}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -19,7 +19,7 @@ const SearchedItems = () => {
     <Grid>
       {searchedItems.map((element) => {
         return (
-          <Link to={"/recipe/" + element.id}>
+          <Link to={"/recipe/" + element.id} style={{ textDecoration: "none" }}>
             <Card key={element.id}>
               <img src={element.image} alt="" />
               <h4>{element.title}</h4>
