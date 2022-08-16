@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Category from "./components/Category";
-import Search from "./components/Search";
+import Header from "./components/Header";
 import Pages from "./Pages/Pages";
 
 export const UserContext = createContext();
@@ -10,7 +10,7 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <BrowserRouter>
-        <Search />
+        <Header />
         <Category />
         <Pages />
       </BrowserRouter>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Recipe = () => {
   let params = useParams();
@@ -15,52 +16,70 @@ const Recipe = () => {
   }, [params.name]);
   console.log(recipe);
   return (
-    <DetailWrapper>
-      <div>
-        <h2>{recipe.title}</h2>
-        <img src={recipe.image} alt="" />
-      </div>
-      <Info>
-        <Button
-          className={activeTab === "Instructions" ? "active" : ""}
-          onClick={() => {
-            setActiveTab("Instructions");
-          }}
-        >
-          Instructions
-        </Button>
-        <Button
-          className={activeTab === "Ingredients" ? "active" : ""}
-          onClick={() => {
-            setActiveTab("Ingredients");
-          }}
-        >
-          Ingredients
-        </Button>
-        {activeTab === "Instructions" && (
-          <div>
-            <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>
-            <h4 dangerouslySetInnerHTML={{ __html: recipe.instructions }}></h4>
-          </div>
-        )}
-        {activeTab === "Ingredients" && (
-          <ul>
-            {recipe.extendedIngredients.map((element) => (
-              <li key={element.id}>{element.original}</li>
-            ))}
-          </ul>
-        )}
-      </Info>
-    </DetailWrapper>
+    <motion.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.5 }}
+    >
+      <DetailWrapper>
+        <div className="left">
+          <h2>{recipe.title}</h2>
+          <img src={recipe.image} alt="" />
+        </div>
+        <Info className="right">
+          <Button
+            className={activeTab === "Instructions" ? "active" : ""}
+            onClick={() => {
+              setActiveTab("Instructions");
+            }}
+          >
+            Instructions
+          </Button>
+          <Button
+            className={activeTab === "Ingredients" ? "active" : ""}
+            onClick={() => {
+              setActiveTab("Ingredients");
+            }}
+          >
+            Ingredients
+          </Button>
+          {activeTab === "Instructions" && (
+            <div>
+              <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>
+              <h4
+                dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+              ></h4>
+            </div>
+          )}
+          {activeTab === "Ingredients" && (
+            <ul>
+              {recipe.extendedIngredients.map((element) => (
+                <li key={element.id}>{element.original}</li>
+              ))}
+            </ul>
+          )}
+        </Info>
+      </DetailWrapper>
+    </motion.div>
   );
 };
 
 export default Recipe;
 
 const DetailWrapper = styled.div`
-  margin-top: 10rem;
+  margin-top: 4rem;
   margin-bottom: 5rem;
   display: flex;
+  .left {
+    width: 60%;
+  }
+  .left img {
+    width: 80%;
+  }
+  .right {
+    width: 40%;
+  }
   .active {
     background: linear-gradient(35deg, #494949, #313131);
     color: white;
@@ -88,7 +107,7 @@ const Button = styled.button`
   font-weight: 500;
 `;
 const Info = styled.div`
-  margin-left: 10rem;
+  margin-left: 1rem;
   h4 {
     font-size: 1.2rem;
     margin-top: 1rem;
