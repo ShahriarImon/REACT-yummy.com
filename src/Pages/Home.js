@@ -13,6 +13,7 @@ const Home = () => {
     >
       <Veg />
       <Popular />
+      <h1> good job</h1>
     </motion.div>
   );
 };
