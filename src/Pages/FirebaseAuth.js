@@ -79,6 +79,7 @@ const FirebaseAuth = () => {
     if (isFieldValid) {
       const updateUser = user;
       updateUser[event.target.name] = event.target.value;
+      updateUser.fieldErrorAlert = "";
       setUser({ ...updateUser });
       console.log("userInfoo", user);
     }
