@@ -31,6 +31,7 @@ const FirebaseAuth = () => {
   };
   const [user, setUser] = useState(initialUser);
   const [button, setButton] = useState("login");
+  const [submit, setSubmit] = useState(false);
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   const provider = new GoogleAuthProvider();
@@ -90,7 +91,13 @@ const FirebaseAuth = () => {
     }
   };
   const handleSubmit = (e) => {
-    if (button === "signup" && user.email && user.name && user.password) {
+    if (
+      button === "signup" &&
+      submit === true &&
+      user.email &&
+      user.name &&
+      user.password
+    ) {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, user.email, user.password)
         .then((userCredential) => {
@@ -107,7 +114,7 @@ const FirebaseAuth = () => {
           setLoggedInUser(newUser);
         });
     }
-    if (button === "login" && user.email && user.password) {
+    if (button === "login" && submit === true && user.email && user.password) {
       const auth = getAuth();
       signInWithEmailAndPassword(auth, user.email, user.password)
         .then((userCredential) => {
@@ -179,6 +186,7 @@ const FirebaseAuth = () => {
             <FormTopButton
               onClick={() => {
                 setButton("signup");
+                setSubmit(false);
               }}
               className={button === "signup" ? "active" : ""}
             >
@@ -187,6 +195,7 @@ const FirebaseAuth = () => {
             <FormTopButton
               onClick={() => {
                 setButton("login");
+                setSubmit(false);
               }}
               className={button === "login" ? "active" : ""}
             >
@@ -199,6 +208,7 @@ const FirebaseAuth = () => {
             )}
             {button === "signup" && (
               <FormInput
+                id="formUserName"
                 type={"text"}
                 placeholder="Username"
                 name="name"
@@ -208,7 +218,12 @@ const FirebaseAuth = () => {
             {user.fieldErrorAlert === "email" && (
               <small style={{ color: "#CB0101" }}> *invalid email</small>
             )}
-            <FormInput placeholder="Email" name="email" onBlur={handleBlur} />
+            <FormInput
+              id="formEmail"
+              placeholder="Email"
+              name="email"
+              onBlur={handleBlur}
+            />
             {user.fieldErrorAlert === "password" && (
               <h6 style={{ color: "#CB0101", textAlign: "center" }}>
                 *password must have at least one digit and one special character
@@ -216,6 +231,7 @@ const FirebaseAuth = () => {
               </h6>
             )}
             <FormInput
+              id="formPassword"
               type={"password"}
               placeholder="password"
               name="password"
@@ -223,6 +239,9 @@ const FirebaseAuth = () => {
             />
             <input
               type="submit"
+              onClick={() => {
+                setSubmit(true);
+              }}
               style={FormDownButton}
               value={button === "signup" ? "Signup" : "Login"}
             />
